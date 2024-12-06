@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Workers Pool</h3>
+      </div>
+      <div class="col-md-3">
+        <select
+          name="category"
+          class="form-select"
+          (change)="showWorkers($event)"
+        >
+          <option value="">Select Category</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary float-end" (click)="addEmployee()">
+          Add Employee
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td class="align-middle">{{ employee.id }}</td>
+            <td class="align-middle">{{ employee.firstName }}</td>
+            <td class="align-middle">{{ employee.lastName }}</td>
+            <td class="align-middle">{{ employee.title }}</td>
+            <td class="align-middle">{{ employee.categoryName }}</td>
+            <td class="align-middle">{{ employee.email }}</td>
+            <td class="align-middle">{{ employee.phone }}</td>
+            <td class="align-middle">
+              <button
+                class="btn btn-primary btn-sm m-2"
+                (click)="editEmployee(employee.id)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="
+                  confirmDelete(
+                    employee.id,
+                    employee.firstName,
+                    employee.lastName
+                  )
+                "
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Users</h3>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-primary float-end" (click)="addUser()">
+          Add User
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td class="align-middle">{{ user.id }}</td>
+            <td class="align-middle">{{ user.firstName }}</td>
+            <td class="align-middle">{{ user.lastName }}</td>
+            <td class="align-middle">{{ user.email }}</td>
+            <td class="align-middle">{{ user.phone }}</td>
+            <td class="align-middle">{{ user.role }}</td>
+            <td class="align-middle">
+              <button
+                class="btn btn-primary btn-sm m-2"
+                (click)="editUser(user.id)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="confirmDelete(user.id, user.firstName, user.lastName)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

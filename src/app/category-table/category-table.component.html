@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-9">
+        <h3>Categories</h3>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary float-end" (click)="addCategory()">
+          Add Category
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Category</th>
+            <th>Parent</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories">
+            <td class="align-middle">{{ category.id }}</td>
+            <td class="align-middle">{{ category.name }}</td>
+            <td class="align-middle">{{ category.parentId }}</td>
+            <td class="align-middle">
+              <button
+                class="btn btn-primary btn-sm m-2"
+                (click)="editCategory(category.id)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="confirmDelete(category.id, category.name)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

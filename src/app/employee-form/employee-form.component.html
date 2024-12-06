@@ -1,0 +1,88 @@
+<div class="employee-form w-50 mx-auto">
+  <div class="card">
+    <div class="card-header">
+      <h3>{{ isEditing ? "Edit" : "Create" }} Employee</h3>
+    </div>
+    <div class="text-danger text-center" *ngIf="errorMessage != ''">
+      <p>{{ errorMessage }}</p>
+    </div>
+    <div class="card-body">
+      <form
+        class="px-2"
+        method="POST"
+        (ngSubmit)="onSubmit()"
+        #employeeForm="ngForm"
+        *ngIf="errorMessage === ''"
+      >
+        <div class="mb-3">
+          <label class="form-label">User *:</label>
+          <select
+            class="form-select"
+            name="user"
+            [(ngModel)]="employee.userId"
+            #user="ngModel"
+            required
+          >
+            <option value="">Select User</option>
+            <option *ngFor="let user of users" value="{{ user.id }}">
+              {{ user.firstName }} {{ user.lastName }}
+            </option>
+          </select>
+          <div *ngIf="user.invalid">
+            <div class="text-danger" *ngIf="user.errors?.['required']">
+              User is required
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Title *:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="title"
+            [(ngModel)]="employee.title"
+            #title="ngModel"
+            required
+          />
+          <div *ngIf="title.invalid && (title.touched || title.dirty)">
+            <div class="text-danger" *ngIf="title.errors?.['required']">
+              Title is required
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Category *:</label>
+          <select
+            class="form-select"
+            name="category"
+            [(ngModel)]="employee.categoryId"
+            #category="ngModel"
+            required
+          >
+            <option value="">Select Category</option>
+            <option
+              *ngFor="let category of categories"
+              value="{{ category.id }}"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+          <div *ngIf="category.invalid">
+            <div class="text-danger" *ngIf="category.errors?.['required']">
+              Category is required
+            </div>
+          </div>
+        </div>
+        <div class="mt-4">
+          <button
+            class="btn btn-primary btn-sm"
+            type="submit"
+            [disabled]="employeeForm.invalid"
+          >
+            {{ isEditing ? "Update" : "Create" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
